@@ -1,0 +1,135 @@
+<mvc:View
+    controllerName="smartexpense.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:viz.data="sap.viz.ui5.data"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" 
+>
+    <Page
+        id="page"
+        title=""
+        showHeader="false"
+    >
+        <content>
+            <Button
+                id="_IDGenButton"
+                text="Add Expenses"
+                press="onAddExpenses"
+            />
+            <Text
+                id="_IDGenText"
+                text="{AppModel>/add}"
+            />
+            <Table
+                id="expenseTable"
+                items="{AppModel>/expenses}"
+            >
+                <columns>
+                    <Column id="_IDGenColumn">
+                        <Text
+                            id="_IDGenText2"
+                            text="Category"
+                        />
+                    </Column>
+
+                    <Column id="_IDGenColumn1">
+                        <Text
+                            id="_IDGenText3"
+                            text="Amount"
+                        />
+                    </Column>
+
+                    <Column id="_IDGenColumn2">
+                        <Text
+                            id="_IDGenText4"
+                            text="Date"
+                        />
+                    </Column>
+
+                    <Column id="_IDGenColumn3">
+                        <Text
+                            id="_IDGenText5"
+                            text="Description"
+                        />
+                    </Column>
+                </columns>
+
+                <items>
+                    <ColumnListItem id="_IDGenColumnListItem">
+                        <cells>
+                            <Text
+                                id="_IDGenText6"
+                                text="{AppModel>category}"
+                            />
+                            <Text
+                                id="_IDGenText7"
+                                text="{AppModel>amount}"
+                            />
+                            <Text
+                                id="_IDGenText8"
+                                text="{AppModel>date}"
+                            />
+                            <Text
+                                id="_IDGenText9"
+                                text="{AppModel>description}"
+                            />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+            <viz:VizFrame
+                id="expenseChart"
+                vizType="stacked_column"
+                height="500px"
+            >
+                <viz:dataset>
+                    <viz.data:FlattenedDataset id="_IDGenFlattenedDataset" data="{AppModel>/chartData}">
+                        <viz.data:dimensions>
+                            <viz.data:DimensionDefinition id="_IDGenDimensionDefinition"
+                                name="Date"
+                                value="{AppModel>date}"
+                            />
+                        </viz.data:dimensions>
+
+                        <viz.data:measures>
+                            <viz.data:MeasureDefinition id="_IDGenMeasureDefinition1"
+                                name="Food"
+                                value="{AppModel>food}"
+                            />
+
+                            <viz.data:MeasureDefinition id="_IDGenMeasureDefinition2"
+                                name="Travel"
+                                value="{AppModel>travel}"
+                            />
+
+                            <viz.data:MeasureDefinition id="_IDGenMeasureDefinition3"
+                                name="Accommodation"
+                                value="{AppModel>accommodation}"
+                            />
+
+                            <viz.data:MeasureDefinition id="_IDGenMeasureDefinition4"
+                                name="Entertainment"
+                                value="{AppModel>entertainment}"
+                            />
+                        </viz.data:measures>
+                    </viz.data:FlattenedDataset>
+                </viz:dataset>
+
+                <viz:feeds>
+                    <viz.feeds:FeedItem id="_IDGenFeedItem"
+                        uid="valueAxis"
+                        type="Measure"
+                        values="Food,Travel,Accommodation,Entertainment"
+                    />
+
+                    <viz.feeds:FeedItem id="_IDGenFeedItem1"
+                        uid="categoryAxis"
+                        type="Dimension"
+                        values="Date"
+                    />
+                </viz:feeds>
+            </viz:VizFrame>
+        </content>
+    </Page>
+</mvc:View>

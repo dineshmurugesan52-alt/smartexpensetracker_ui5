@@ -1,0 +1,79 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <Dialog
+        id="addExpenseDialog"
+        title="Add Expense"
+        contentWidth="30rem">
+
+        <content>
+            <VBox id="_IDGenVBox" class="sapUiMediumMargin">
+
+                <Label id="_IDGenLabel" text="Category" required="true"/>
+
+                <Select
+                    id="categorySelect"
+                    width="100%"
+                    items="{AppModel>/categories}"
+                    selectedKey="{AppModel>/newExpense/category}"
+                    forceSelection="false">
+
+                    <core:Item id="_IDGenItem"
+                        key="{AppModel>id}"
+                        text="{AppModel>name}" />
+
+                </Select>
+
+                <Label id="_IDGenLabel1"
+                    text="Amount"
+                    required="true"
+                    class="sapUiSmallMarginTop"/>
+
+                <Input
+                    id="amountInput"
+                    type="Number"
+                    placeholder="Enter amount"
+                    value="{AppModel>/newExpense/amount}"/>
+
+                <Label id="_IDGenLabel2"
+                    text="Date"
+                    required="true"
+                    class="sapUiSmallMarginTop"/>
+
+                <DatePicker
+                    id="expenseDate"
+                    width="100%"
+                    value="{AppModel>/newExpense/date}"
+                    valueFormat="dd-MM-yyyy"
+                    displayFormat="dd-MM-yyyy"/>
+
+                <Label id="_IDGenLabel3"
+                    text="Description"
+                    class="sapUiSmallMarginTop"/>
+
+                <TextArea
+                    id="description"
+                    rows="3"
+                    placeholder="Enter description"
+                    value="{AppModel>/newExpense/description}"/>
+
+            </VBox>
+        </content>
+
+        <beginButton>
+            <Button id="_IDGenButton2"
+                text="Save"
+                type="Emphasized"
+                press=".onSaveExpense"/>
+        </beginButton>
+
+        <endButton>
+            <Button id="_IDGenButton3"
+                text="Cancel"
+                press=".onCloseDialog"/>
+        </endButton>
+
+    </Dialog>
+
+</core:FragmentDefinition>

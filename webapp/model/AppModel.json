@@ -1,0 +1,53 @@
+{
+    "categories":[
+        {
+            "id":"Food",
+            "name":"Food"
+        },
+        {
+            "id":"Travel",
+            "name":"Travel"
+        },
+        {
+            "id":"Accommodation",
+            "name":"Accommodation"
+        },
+        {
+            "id":"Entertainment",
+            "name":"Entertainment"
+        }
+    ],
+    "expenses":[
+        {
+            "id":1,
+            "categoryId":1,
+            "category":"Food",
+            "amount":50.00,
+            "date":"01-06-2026",
+            "description":"Lunch at a restaurant"
+        }
+    ],
+    "selectedMonth": "06",
+    "chartData":[
+        {
+        "date":"01",
+        "food":200,
+        "travel":100,
+        "accommodation":0,
+        "entertainment":0
+    },
+    {
+        "date":"02",
+        "food":100,
+        "travel":200,
+        "accommodation":0,
+        "entertainment":50
+    }
+    ],
+    "newExpense": {
+        "category": "",
+        "amount": "",
+        "date": "",
+        "description": ""
+    }
+}
