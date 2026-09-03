@@ -1,12 +1,45 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/ui/core/Fragment"
-], (Controller, Fragment) => {
+    "sap/ui/core/Fragment",
+    "sap/ui/model/json/JSONModel",
+    "sap/m/MessageToast"
+], (Controller, Fragment,JSONModel,MessageToast) => {
     "use strict";
 
     return Controller.extend("smartexpense.controller.View1", {
         onInit() {
             this._generateDashboard();
+            var aMonths = [];
+            var oDate = new Date(2023, 0, 1); // Start from Jan 2023 (change as needed)
+            var oToday = new Date(); // Current date
+            console.log(oDate,oToday);
+            while (
+                oDate.getFullYear() < oToday.getFullYear() ||
+                (oDate.getFullYear() === oToday.getFullYear() && oDate.getMonth() <= oToday.getMonth())
+            ) {
+                var mm = String(oDate.getMonth() + 1).padStart(2, "0");
+                var yyyy = oDate.getFullYear();
+
+                aMonths.push({
+                    key: mm + "/" + yyyy, // MM/yyyy
+                    text: oDate.toLocaleString("default", { month: "long" }) + " " + yyyy
+                });
+                console.log(aMonths);
+                oDate.setMonth(oDate.getMonth() + 1);
+            }
+
+            var oMonthsModel = new JSONModel({ months: aMonths });
+            console.log("oMonthsModel",oMonthsModel);
+            this.getView().setModel(oMonthsModel, "monthsModel");
+            //console.log(oMonthsModel/months/key(0));
+            // Preselect current month
+            var sCurrentKey = String(oToday.getMonth() + 1).padStart(2, "0") + "/" + oToday.getFullYear();
+            console.log(oToday.getMonth(),sCurrentKey);
+            this.byId("monthYearSelect").setSelectedKey(sCurrentKey);
+        },
+         onMonthYearChange: function (oEvent) {
+            var sKey = oEvent.getParameter("selectedItem").getKey();
+            MessageToast.show("Selected: " + sKey);
         },
         onAddExpenses: function () {
             // var rI = this.getView().getModel("AppModel").getProperty("/newExpense/category");

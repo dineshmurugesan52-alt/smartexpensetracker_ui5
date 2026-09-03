@@ -1,6 +1,7 @@
 <mvc:View
     controllerName="smartexpense.controller.View1"
     xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
     xmlns="sap.m"
     xmlns:viz="sap.viz.ui5.controls"
     xmlns:viz.data="sap.viz.ui5.data"
@@ -9,18 +10,59 @@
     <Page
         id="page"
         title=""
-        showHeader="false"
     >
+    <customHeader>
+    <Toolbar id="_IDGenToolbar1">
+
+        <Button
+            id="menuButton"
+            icon="sap-icon://menu2"
+            type="Transparent"
+            press=".onAddExpenses" />
+
+        <ToolbarSpacer id="_IDGenToolbarSpacer" />
+
+        <Title
+            id="newText"
+            text="Smart Expense" />
+
+        <ToolbarSpacer id="_IDGenToolbarSpacer1" />
+
+        <Button
+            id="newbuttonn"
+            text="Add Expense"
+            icon="sap-icon://add"
+            type="Transparent"
+            press=".onAddExpenses" />
+
+    </Toolbar>
+</customHeader>
+
         <content>
-            <Button
-                id="_IDGenButton"
-                text="Add Expenses"
-                press="onAddExpenses"
-            />
-            <Text
-                id="_IDGenText"
-                text="{AppModel>/add}"
-            />
+
+    <Toolbar id="_IDGenToolbar2"> 
+        <Title id="_IDGenTitle" 
+            text="Daily Expense Overview" 
+            level="H2" /> 
+ 
+        <ToolbarSpacer id="_IDGenToolbarSpacer2" /> 
+ 
+        <Select
+                id="monthYearSelect"
+                items="{
+                    path: 'monthsModel>/months'
+                }"
+                change=".onMonthYearChange">
+                <core:Item id="_IDGenItem5"
+                    xmlns:core="sap.ui.core"
+                    key="{monthsModel>key}"
+                    text="{monthsModel>text}" />
+            </Select>
+ 
+        
+        
+ 
+    </Toolbar> 
             <Table
                 id="expenseTable"
                 items="{AppModel>/expenses}"
