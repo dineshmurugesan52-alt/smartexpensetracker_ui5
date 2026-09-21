@@ -14,7 +14,7 @@ sap.ui.define([
 
         init() {
             // call the base component's init function
-            console.log("Hi");
+            console.log("Hii");
             UIComponent.prototype.init.apply(this, arguments);
 
             // set the device model
