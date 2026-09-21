@@ -75,9 +75,16 @@
       "routes": [
         {
           "name": "RouteView1",
-          "pattern": ":?query:",
+          "pattern": "",
           "target": [
             "TargetView1"
+          ]
+        },
+        {
+          "name": "RouteView2",
+          "pattern": "AddExpense",
+          "target": [
+            "TargetView2"
           ]
         }
       ],
@@ -85,6 +92,10 @@
         "TargetView1": {
           "id": "View1",
           "name": "View1"
+        },
+        "TargetView2": {
+          "id": "AddExpense",
+          "name": "AddExpense"
         }
       }
     },

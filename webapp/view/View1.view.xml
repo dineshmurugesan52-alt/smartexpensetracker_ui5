@@ -63,6 +63,7 @@
         
  
     </Toolbar> 
+    
             <Table
                 id="expenseTable"
                 items="{AppModel>/expenses}"
@@ -95,10 +96,16 @@
                             text="Description"
                         />
                     </Column>
+                    <Column id="_IDGenColumn4" >
+                        <Text
+                            id="_IDGenText11"
+                            text="Actions"
+                        />
+                    </Column>
                 </columns>
 
                 <items>
-                    <ColumnListItem id="_IDGenColumnListItem">
+                    <ColumnListItem id="_IDGenColumnListItem" press=".onExpensePress" type="Active">
                         <cells>
                             <Text
                                 id="_IDGenText6"
@@ -116,6 +123,9 @@
                                 id="_IDGenText9"
                                 text="{AppModel>description}"
                             />
+                            <Button id="_IDGenButton"
+                    text="{AppModel>amount}"
+                    press=".onDelete" />
                         </cells>
                     </ColumnListItem>
                 </items>

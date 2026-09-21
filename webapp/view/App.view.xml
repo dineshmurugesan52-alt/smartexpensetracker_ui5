@@ -1,7 +1,27 @@
 <mvc:View controllerName="smartexpense.controller.App"
     displayBlock="true"
     xmlns:mvc="sap.ui.core.mvc"
+    xmlns:tnt="sap.tnt"
     xmlns="sap.m">
-    <App id="app">
-    </App>
+    <!-- <App id="app"></App> -->
+    <tnt:ToolPage id="toolPage">
+    <tnt:header>
+    <tnt:ToolHeader id="_IDGenToolHeader" >
+
+    </tnt:ToolHeader>
+    </tnt:header>
+    <tnt:sideContent>
+    <tnt:SideNavigation id="sideNav" selectedKey="dashboard" itemSelect="onNavItemSelect">
+    <tnt:NavigationList id="_IDGenNavigationList">
+    <tnt:NavigationListItem id="_IDGenNavigationListItem1" key="dashboard" text="Dashboard" icon="sap-icon://home" />
+    <tnt:NavigationListItem id="_IDGenNavigationListItem2" key="addExpense" text="Add expense" icon="sap-icon://add" />
+    <tnt:NavigationListItem id="_IDGenNavigationListItem3" key="budgets" text="Budgets" icon="sap-icon://money-bills" />
+    <tnt:NavigationListItem id="_IDGenNavigationListItem4" key="history" text="History" icon="sap-icon://history" />
+    </tnt:NavigationList>
+    </tnt:SideNavigation>
+    </tnt:sideContent>
+    <tnt:mainContents>
+    <NavContainer id="app" />
+    </tnt:mainContents>
+    </tnt:ToolPage>
 </mvc:View>

@@ -1,0 +1,8 @@
+<mvc:View id="_IDGenView"
+  controllerName="smartexpense.controller.AddExpense"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m">
+  <Page id="_IDGenPage" title="{i18n>title}">
+  <Text id="_IDGenText" text="AddExpense"></Text>
+  </Page>
+</mvc:View>

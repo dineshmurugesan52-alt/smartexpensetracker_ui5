@@ -3,7 +3,7 @@ sap.ui.define([
     "sap/ui/core/Fragment",
     "sap/ui/model/json/JSONModel",
     "sap/m/MessageToast"
-], (Controller, Fragment,JSONModel,MessageToast) => {
+], (Controller, Fragment, JSONModel, MessageToast) => {
     "use strict";
 
     return Controller.extend("smartexpense.controller.View1", {
@@ -12,7 +12,7 @@ sap.ui.define([
             var aMonths = [];
             var oDate = new Date(2023, 0, 1); // Start from Jan 2023 (change as needed)
             var oToday = new Date(); // Current date
-            console.log(oDate,oToday);
+            console.log(oDate, oToday);
             while (
                 oDate.getFullYear() < oToday.getFullYear() ||
                 (oDate.getFullYear() === oToday.getFullYear() && oDate.getMonth() <= oToday.getMonth())
@@ -29,23 +29,45 @@ sap.ui.define([
             }
 
             var oMonthsModel = new JSONModel({ months: aMonths });
-            console.log("oMonthsModel",oMonthsModel);
+            console.log("oMonthsModel", oMonthsModel);
             this.getView().setModel(oMonthsModel, "monthsModel");
             //console.log(oMonthsModel/months/key(0));
             // Preselect current month
             var sCurrentKey = String(oToday.getMonth() + 1).padStart(2, "0") + "/" + oToday.getFullYear();
-            console.log(oToday.getMonth(),sCurrentKey);
+            console.log(oToday.getMonth(), sCurrentKey);
             this.byId("monthYearSelect").setSelectedKey(sCurrentKey);
         },
-         onMonthYearChange: function (oEvent) {
+        onDelete: function (oEvent) {
+
+            var oButton = oEvent.getSource();
+
+            var oContext = oButton.getBindingContext("AppModel");
+
+            console.log(oContext);
+
+            var sCategory = oContext.getProperty("category");
+
+            console.log(sCategory);
+
+            var bBinding = oButton.getBinding("text");
+
+            console.log(bBinding);
+            this.getOwnerComponent().getRouter().navTo("RouteView2");
+        },
+        onMonthYearChange: function (oEvent) {
             var sKey = oEvent.getParameter("selectedItem").getKey();
             MessageToast.show("Selected: " + sKey);
         },
-        onAddExpenses: function () {
+        onAddExpenses: function (oEvent) {
             // var rI = this.getView().getModel("AppModel").getProperty("/newExpense/category");
             // console.log(rI);
             //var that = this;
-
+            var a = oEvent.getSource().getBindingContext();
+            //var b=a.getProperty("amount");
+            console.log(a);
+            console.log("New" + oEvent.getSource());
+            var bc = oEvent.getSource().getBindingContext();
+            console.log(bc.getProperty("category"));
             if (!this._oDialog) {
 
                 Fragment.load({
@@ -80,13 +102,23 @@ sap.ui.define([
             //     description: ""
             // });
         },
+        onExpensePress: function (oEvent) {
+
+            var oContext = oEvent.getSource().getBindingContext("AppModel");
+
+            var sTitle = oContext.getProperty("category");
+            var fAmount = oContext.getProperty("amount");
+
+            console.log(sTitle);
+            console.log(fAmount);
+        },
         _generateDashboard: function () {
             console.log("Generating dashboard...");
             var oModel = this.getOwnerComponent().getModel("AppModel");
             console.log(this);
             console.log(this.getView().getModel());
             // Read expenses
-            console.log("checking expenses: "+ oModel.getProperty("/expenses"));
+            console.log("checking expenses: " + oModel.getProperty("/expenses"));
             var aExpenses = oModel.getProperty("/expenses") || [];
             console.log(aExpenses);
             // Selected month (01-12)
@@ -183,7 +215,7 @@ sap.ui.define([
                 "/chartData",
                 aChartData
             );
-            
+
 
             // Update totals
             oModel.setProperty(
