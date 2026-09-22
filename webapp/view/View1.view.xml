@@ -10,8 +10,9 @@
     <Page
         id="page"
         title=""
+        showHeader="true"
     >
-    <customHeader>
+    <!-- <customHeader>
     <Toolbar id="_IDGenToolbar1">
 
         <Button
@@ -36,11 +37,18 @@
             press=".onAddExpenses" />
 
     </Toolbar>
-</customHeader>
+</customHeader> -->
+
+    <headerContent>
+      <Button id="_IDGenButton6" icon="sap-icon://navigation-left-arrow" press="onPrevMonth" />
+      <Text id="_IDGenText" text="{mock>/month}" class="sapUiSmallMarginBeginEnd" />
+      <Button id="_IDGenButton7" icon="sap-icon://navigation-right-arrow" press="onNextMonth" />
+      <Button id="_IDGenButton8" text="Add expense" icon="sap-icon://add" type="Emphasized" press="onAddExpense" class="sapUiSmallMarginBegin" />
+    </headerContent>
 
         <content>
 
-    <Toolbar id="_IDGenToolbar2"> 
+    <!-- <Toolbar id="_IDGenToolbar2"> 
         <Title id="_IDGenTitle" 
             text="Daily Expense Overview" 
             level="H2" /> 
@@ -62,7 +70,7 @@
         
         
  
-    </Toolbar> 
+    </Toolbar>  -->
     
             <Table
                 id="expenseTable"

@@ -68,20 +68,18 @@
         "transition": "slide",
         "type": "View",
         "viewType": "XML",
-        "path": "smartexpense.view",
-        "async": true,
-        "viewPath": "smartexpense.view"
+        "path": "smartexpense.view"
       },
       "routes": [
         {
-          "name": "RouteView1",
+          "name": "dashboard",
           "pattern": "",
           "target": [
             "TargetView1"
           ]
         },
         {
-          "name": "RouteView2",
+          "name": "AddExpense",
           "pattern": "AddExpense",
           "target": [
             "TargetView2"

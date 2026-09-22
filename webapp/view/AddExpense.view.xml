@@ -1,8 +1,43 @@
-<mvc:View id="_IDGenView"
+<mvc:View
   controllerName="smartexpense.controller.AddExpense"
   xmlns:mvc="sap.ui.core.mvc"
-  xmlns="sap.m">
-  <Page id="_IDGenPage" title="{i18n>title}">
-  <Text id="_IDGenText" text="AddExpense"></Text>
+  xmlns="sap.m"
+  xmlns:f="sap.ui.layout.form"
+  displayBlock="true">
+
+  <Page id="_IDGenPage" title="Add expense" showNavButton="true" navButtonPress="onNavBack" >
+    <content>
+      <f:SimpleForm id="_IDGenSimpleForm1" editable="true" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="12" labelSpanS="12">
+        <Label id="_IDGenLabel4" text="Amount" />
+        <Input id="addExpenseAmountInput" type="Number" placeholder="0.00" />
+
+        <Label id="_IDGenLabel5" text="Date" />
+        <DatePicker id="dateInput" valueFormat="yyyy-MM-dd" displayFormat="dd MMM yyyy" />
+
+        <Label id="_IDGenLabel6" text="Category" />
+        <SegmentedButton id="categorySegmentedButton" selectedKey="Food">
+          <items>
+            <SegmentedButtonItem id="_IDGenSegmentedButtonItem" key="Food" text="Food" icon="sap-icon://meal" />
+            <SegmentedButtonItem id="_IDGenSegmentedButtonItem1" key="Travel" text="Travel" icon="sap-icon://travel-itinerary" />
+            <SegmentedButtonItem id="_IDGenSegmentedButtonItem2" key="Accommodation" text="Stay" icon="sap-icon://home" />
+            <SegmentedButtonItem id="_IDGenSegmentedButtonItem3" key="Others" text="Others" icon="sap-icon://overflow" />
+          </items>
+        </SegmentedButton>
+
+        <Label id="_IDGenLabel7" text="Payment mode" />
+        <Select id="paymentSelect">
+          <items>
+            <core:Item id="_IDGenItem1" xmlns:core="sap.ui.core" key="UPI" text="UPI" />
+            <core:Item id="_IDGenItem2" xmlns:core="sap.ui.core" key="Card" text="Card" />
+            <core:Item id="_IDGenItem3" xmlns:core="sap.ui.core" key="Cash" text="Cash" />
+          </items>
+        </Select>
+
+        <Label id="_IDGenLabel8" text="Note" />
+        <Input id="noteInput" placeholder="e.g. Lunch with team" />
+      </f:SimpleForm>
+
+      <Button id="_IDGenButton4" text="Save expense" type="Emphasized" press="onSaveExpense" width="100%" class="sapUiMediumMarginTop" />
+    </content>
   </Page>
 </mvc:View>

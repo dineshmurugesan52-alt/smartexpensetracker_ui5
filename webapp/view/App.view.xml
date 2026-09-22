@@ -1,27 +1,66 @@
-<mvc:View controllerName="smartexpense.controller.App"
+<mvc:View
+    controllerName="smartexpense.controller.App"
     displayBlock="true"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns:tnt="sap.tnt"
-    xmlns="sap.m">
+    xmlns="sap.m"
+>
     <!-- <App id="app"></App> -->
     <tnt:ToolPage id="toolPage">
-    <tnt:header>
-    <tnt:ToolHeader id="_IDGenToolHeader" >
-
-    </tnt:ToolHeader>
-    </tnt:header>
-    <tnt:sideContent>
-    <tnt:SideNavigation id="sideNav" selectedKey="dashboard" itemSelect="onNavItemSelect">
-    <tnt:NavigationList id="_IDGenNavigationList">
-    <tnt:NavigationListItem id="_IDGenNavigationListItem1" key="dashboard" text="Dashboard" icon="sap-icon://home" />
-    <tnt:NavigationListItem id="_IDGenNavigationListItem2" key="addExpense" text="Add expense" icon="sap-icon://add" />
-    <tnt:NavigationListItem id="_IDGenNavigationListItem3" key="budgets" text="Budgets" icon="sap-icon://money-bills" />
-    <tnt:NavigationListItem id="_IDGenNavigationListItem4" key="history" text="History" icon="sap-icon://history" />
-    </tnt:NavigationList>
-    </tnt:SideNavigation>
-    </tnt:sideContent>
-    <tnt:mainContents>
-    <NavContainer id="app" />
-    </tnt:mainContents>
+        <tnt:header>
+            <tnt:ToolHeader id="_IDGenToolHeader">
+                <Button
+                    id="_IDGenButton1"
+                    icon="sap-icon://menu2"
+                    press="onToggleSideNav"
+                    type="Emphasized"
+                />
+                <Title
+                    id="_IDGenTitle1"
+                    text="Smart Expense Tracker"
+                    level="H1"
+                    class="sapUiMediumMarginBegin"
+                />
+                <ToolbarSpacer id="_IDGenToolbarSpacer" ></ToolbarSpacer>
+                <Avatar id="_IDGenAvatar" initials="SA" displaySize="XS" />
+            </tnt:ToolHeader>
+        </tnt:header>
+        <tnt:sideContent>
+            <tnt:SideNavigation
+                id="sideNavigation"
+                selectedKey="dashboard"
+                itemSelect="onNavItemSelect"
+            >
+                <tnt:NavigationList id="_IDGenNavigationList">
+                    <tnt:NavigationListItem
+                        id="_IDGenNavigationListItem1"
+                        key="dashboard"
+                        text="Dashboard"
+                        icon="sap-icon://home"
+                    />
+                    <tnt:NavigationListItem
+                        id="_IDGenNavigationListItem2"
+                        key="AddExpense"
+                        text="Add expense"
+                        icon="sap-icon://add"
+                    />
+                    <tnt:NavigationListItem
+                        id="_IDGenNavigationListItem3"
+                        key="budgets"
+                        text="Budgets"
+                        icon="sap-icon://money-bills"
+                    />
+                    <tnt:NavigationListItem
+                        id="_IDGenNavigationListItem4"
+                        key="history"
+                        text="History"
+                        icon="sap-icon://history"
+                    />
+                </tnt:NavigationList>
+            </tnt:SideNavigation>
+        </tnt:sideContent>
+        <tnt:mainContents>
+            <NavContainer id="app" />
+        </tnt:mainContents>
     </tnt:ToolPage>
 </mvc:View>

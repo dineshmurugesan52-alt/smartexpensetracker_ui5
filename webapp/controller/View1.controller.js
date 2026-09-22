@@ -8,34 +8,34 @@ sap.ui.define([
 
     return Controller.extend("smartexpense.controller.View1", {
         onInit() {
-            this._generateDashboard();
-            var aMonths = [];
-            var oDate = new Date(2023, 0, 1); // Start from Jan 2023 (change as needed)
-            var oToday = new Date(); // Current date
-            console.log(oDate, oToday);
-            while (
-                oDate.getFullYear() < oToday.getFullYear() ||
-                (oDate.getFullYear() === oToday.getFullYear() && oDate.getMonth() <= oToday.getMonth())
-            ) {
-                var mm = String(oDate.getMonth() + 1).padStart(2, "0");
-                var yyyy = oDate.getFullYear();
+            //this._generateDashboard();
+            // var aMonths = [];
+            // var oDate = new Date(2023, 0, 1); // Start from Jan 2023 (change as needed)
+            // var oToday = new Date(); // Current date
+            // console.log(oDate, oToday);
+            // while (
+            //     oDate.getFullYear() < oToday.getFullYear() ||
+            //     (oDate.getFullYear() === oToday.getFullYear() && oDate.getMonth() <= oToday.getMonth())
+            // ) {
+            //     var mm = String(oDate.getMonth() + 1).padStart(2, "0");
+            //     var yyyy = oDate.getFullYear();
 
-                aMonths.push({
-                    key: mm + "/" + yyyy, // MM/yyyy
-                    text: oDate.toLocaleString("default", { month: "long" }) + " " + yyyy
-                });
-                console.log(aMonths);
-                oDate.setMonth(oDate.getMonth() + 1);
-            }
+            //     aMonths.push({
+            //         key: mm + "/" + yyyy, // MM/yyyy
+            //         text: oDate.toLocaleString("default", { month: "long" }) + " " + yyyy
+            //     });
+            //     console.log(aMonths);
+            //     oDate.setMonth(oDate.getMonth() + 1);
+            // }
 
-            var oMonthsModel = new JSONModel({ months: aMonths });
-            console.log("oMonthsModel", oMonthsModel);
-            this.getView().setModel(oMonthsModel, "monthsModel");
-            //console.log(oMonthsModel/months/key(0));
-            // Preselect current month
-            var sCurrentKey = String(oToday.getMonth() + 1).padStart(2, "0") + "/" + oToday.getFullYear();
-            console.log(oToday.getMonth(), sCurrentKey);
-            this.byId("monthYearSelect").setSelectedKey(sCurrentKey);
+            // var oMonthsModel = new JSONModel({ months: aMonths });
+            // console.log("oMonthsModel", oMonthsModel);
+            // this.getView().setModel(oMonthsModel, "monthsModel");
+            // //console.log(oMonthsModel/months/key(0));
+            // // Preselect current month
+            // var sCurrentKey = String(oToday.getMonth() + 1).padStart(2, "0") + "/" + oToday.getFullYear();
+            // console.log(oToday.getMonth(), sCurrentKey);
+            // this.byId("monthYearSelect").setSelectedKey(sCurrentKey);
         },
         onDelete: function (oEvent) {
 
@@ -58,49 +58,52 @@ sap.ui.define([
             var sKey = oEvent.getParameter("selectedItem").getKey();
             MessageToast.show("Selected: " + sKey);
         },
-        onAddExpenses: function (oEvent) {
-            // var rI = this.getView().getModel("AppModel").getProperty("/newExpense/category");
-            console.log("development");
-            //var that = this;
-            var a = oEvent.getSource().getBindingContext();
-            //var b=a.getProperty("amount");
-            console.log(a);
-            console.log("New" + oEvent.getSource());
-            var bc = oEvent.getSource().getBindingContext();
-            console.log(bc.getProperty("category"));
-            if (!this._oDialog) {
+        // onAddExpenses: function (oEvent) {
+        //     // var rI = this.getView().getModel("AppModel").getProperty("/newExpense/category");
+        //     console.log("development");
+        //     //var that = this;
+        //     var a = oEvent.getSource().getBindingContext();
+        //     //var b=a.getProperty("amount");
+        //     console.log(a);
+        //     console.log("New" + oEvent.getSource());
+        //     var bc = oEvent.getSource().getBindingContext();
+        //     //console.log(bc.getProperty("category"));
+        //     if (!this._oDialog) {
 
-                Fragment.load({
-                    id: "AddExpensesFrag",
-                    name: "smartexpense.fragments.AddExpenses",
-                    controller: this
-                }).then(function (oDialog) {
+        //         Fragment.load({
+        //             id: "AddExpensesFrag",
+        //             name: "smartexpense.fragments.AddExpenses",
+        //             controller: this
+        //         }).then(function (oDialog) {
 
-                    this._oDialog = oDialog;
-                    this.getView().addDependent(oDialog);
-                    oDialog.open();
+        //             this._oDialog = oDialog;
+        //             this.getView().addDependent(oDialog);
+        //             oDialog.open();
 
-                }.bind(this));
+        //         }.bind(this));
 
 
-            } else {
-                this._oDialog.open();
-            }
-            var oModel = this.getView().getModel("AppModel");
-            var oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({
-                pattern: "dd-MM-yyyy"
-            });
+        //     } else {
+        //         this._oDialog.open();
+        //     }
+        //     var oModel = this.getView().getModel("AppModel");
+        //     var oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({
+        //         pattern: "dd-MM-yyyy"
+        //     });
 
-            var sToday = oDateFormat.format(new Date());
-            console.log(sToday);
-            oModel.setProperty("/newExpense/date", sToday);
+        //     var sToday = oDateFormat.format(new Date());
+        //     console.log(sToday);
+        //     oModel.setProperty("/newExpense/date", sToday);
 
-            // oModel.setProperty("/newExpense", {
-            //     category: "",
-            //     amount: "",
-            //     date: new Date(),   // Today's date
-            //     description: ""
-            // });
+        //     // oModel.setProperty("/newExpense", {
+        //     //     category: "",
+        //     //     amount: "",
+        //     //     date: new Date(),   // Today's date
+        //     //     description: ""
+        //     // });
+        // },
+        onAddExpense: function () {
+            this.getOwnerComponent().getRouter().navTo("AddExpense");
         },
         onExpensePress: function (oEvent) {
 
@@ -112,118 +115,118 @@ sap.ui.define([
             console.log(sTitle);
             console.log(fAmount);
         },
-        _generateDashboard: function () {
-            console.log("Generating dashboard...");
-            var oModel = this.getOwnerComponent().getModel("AppModel");
-            console.log(this);
-            console.log(this.getView().getModel());
-            // Read expenses
-            console.log("checking expenses: " + oModel.getProperty("/expenses"));
-            var aExpenses = oModel.getProperty("/expenses") || [];
-            console.log(aExpenses);
-            // Selected month (01-12)
-            var sSelectedMonth = oModel.getProperty("/selectedMonth");
-            console.log("Selected month: " + sSelectedMonth);
-            // Temporary object for grouping by date
-            var oChart = {};
+        // _generateDashboard: function () {
+        //     console.log("Generating dashboard...");
+        //     var oModel = this.getOwnerComponent().getModel("AppModel");
+        //     console.log(this);
+        //     console.log(this.getView().getModel());
+        //     // Read expenses
+        //     console.log("checking expenses: " + oModel.getProperty("/expenses"));
+        //     var aExpenses = oModel.getProperty("/expenses") || [];
+        //     console.log(aExpenses);
+        //     // Selected month (01-12)
+        //     var sSelectedMonth = oModel.getProperty("/selectedMonth");
+        //     console.log("Selected month: " + sSelectedMonth);
+        //     // Temporary object for grouping by date
+        //     var oChart = {};
 
-            // Totals
-            var oTotals = {
-                food: 0,
-                travel: 0,
-                accommodation: 0,
-                others: 0,
-                expense: 0
-            };
+        //     // Totals
+        //     var oTotals = {
+        //         food: 0,
+        //         travel: 0,
+        //         accommodation: 0,
+        //         others: 0,
+        //         expense: 0
+        //     };
 
-            // Loop through expenses
-            aExpenses.forEach(function (oExpense) {
-                console.log("Processing expense: ", oExpense);
+        //     // Loop through expenses
+        //     aExpenses.forEach(function (oExpense) {
+        //         console.log("Processing expense: ", oExpense);
 
-                // Example date: 2026-06-30
-                var sMonth = oExpense.date.substring(3, 5);
-                console.log("Expense month: " + sMonth);
+        //         // Example date: 2026-06-30
+        //         var sMonth = oExpense.date.substring(3, 5);
+        //         console.log("Expense month: " + sMonth);
 
-                // Skip if not selected month
-                // if (sMonth !== sSelectedMonth) {
-                //     console.log("Skipping expense for month: " + sMonth);
-                //     return;
-                // }
+        //         // Skip if not selected month
+        //         // if (sMonth !== sSelectedMonth) {
+        //         //     console.log("Skipping expense for month: " + sMonth);
+        //         //     return;
+        //         // }
 
-                // Get day
-                var sDate = oExpense.date.substring(0, 2);
-                console.log("Expense date: " + sDate);
+        //         // Get day
+        //         var sDate = oExpense.date.substring(0, 2);
+        //         console.log("Expense date: " + sDate);
 
-                // Create date object if not exists
-                if (!oChart[sDate]) {
+        //         // Create date object if not exists
+        //         if (!oChart[sDate]) {
 
-                    oChart[sDate] = {
-                        date: sDate,
-                        food: 0,
-                        travel: 0,
-                        accommodation: 0,
-                        others: 0
-                    };
-                }
+        //             oChart[sDate] = {
+        //                 date: sDate,
+        //                 food: 0,
+        //                 travel: 0,
+        //                 accommodation: 0,
+        //                 others: 0
+        //             };
+        //         }
 
-                // Add amount to category
-                console.log("Adding expense to category: ", oExpense.category, " Amount: ", oExpense.amount);
-                switch (oExpense.category) {
+        //         // Add amount to category
+        //         console.log("Adding expense to category: ", oExpense.category, " Amount: ", oExpense.amount);
+        //         switch (oExpense.category) {
 
-                    case "Food":
+        //             case "Food":
 
-                        oChart[sDate].food += Number(oExpense.amount);
-                        oTotals.food += Number(oExpense.amount);
-                        break;
+        //                 oChart[sDate].food += Number(oExpense.amount);
+        //                 oTotals.food += Number(oExpense.amount);
+        //                 break;
 
-                    case "Travel":
-                        console.log("Adding travel expense: ", oExpense.amount);
-                        oChart[sDate].travel += Number(oExpense.amount);
-                        oTotals.travel += Number(oExpense.amount);
-                        break;
+        //             case "Travel":
+        //                 console.log("Adding travel expense: ", oExpense.amount);
+        //                 oChart[sDate].travel += Number(oExpense.amount);
+        //                 oTotals.travel += Number(oExpense.amount);
+        //                 break;
 
-                    case "Accommodation":
+        //             case "Accommodation":
 
-                        oChart[sDate].accommodation += Number(oExpense.amount);
-                        oTotals.accommodation += Number(oExpense.amount);
-                        break;
+        //                 oChart[sDate].accommodation += Number(oExpense.amount);
+        //                 oTotals.accommodation += Number(oExpense.amount);
+        //                 break;
 
-                    default:
+        //             default:
 
-                        oChart[sDate].entertainment += Number(oExpense.amount);
-                        oTotals.entertainment += Number(oExpense.amount);
-                }
+        //                 oChart[sDate].entertainment += Number(oExpense.amount);
+        //                 oTotals.entertainment += Number(oExpense.amount);
+        //         }
 
-                // Total expense
-                oTotals.expense += Number(oExpense.amount);
+        //         // Total expense
+        //         oTotals.expense += Number(oExpense.amount);
 
-            });
+        //     });
 
-            // Convert object to array
-            var aChartData = Object.values(oChart);
+        //     // Convert object to array
+        //     var aChartData = Object.values(oChart);
 
-            // Sort by date
-            aChartData.sort(function (a, b) {
+        //     // Sort by date
+        //     aChartData.sort(function (a, b) {
 
-                return Number(a.date) - Number(b.date);
+        //         return Number(a.date) - Number(b.date);
 
-            });
+        //     });
 
-            // Update chart data
-            console.log("Chart Data: ", aChartData);
-            oModel.setProperty(
-                "/chartData",
-                aChartData
-            );
+        //     // Update chart data
+        //     console.log("Chart Data: ", aChartData);
+        //     oModel.setProperty(
+        //         "/chartData",
+        //         aChartData
+        //     );
 
 
-            // Update totals
-            oModel.setProperty(
-                "/totals",
-                oTotals
-            );
+        //     // Update totals
+        //     oModel.setProperty(
+        //         "/totals",
+        //         oTotals
+        //     );
 
-        },
+        // },
         onSaveExpense: function () {
 
             var oModel = this.getView().getModel("AppModel");
