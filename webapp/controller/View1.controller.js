@@ -60,7 +60,7 @@ sap.ui.define([
         },
         onAddExpenses: function (oEvent) {
             // var rI = this.getView().getModel("AppModel").getProperty("/newExpense/category");
-            // console.log(rI);
+            console.log("development");
             //var that = this;
             var a = oEvent.getSource().getBindingContext();
             //var b=a.getProperty("amount");
