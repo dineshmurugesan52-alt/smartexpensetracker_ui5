@@ -74,7 +74,7 @@
     
             <Table
                 id="expenseTable"
-                items="{AppModel>/expenses}"
+                items="{expense>/Expenses}"
             >
                 <columns>
                     <Column id="_IDGenColumn">
@@ -117,22 +117,22 @@
                         <cells>
                             <Text
                                 id="_IDGenText6"
-                                text="{AppModel>category}"
+                                text="{expense>category}"
                             />
                             <Text
                                 id="_IDGenText7"
-                                text="{AppModel>amount}"
+                                text="{expense>amount}"
                             />
                             <Text
                                 id="_IDGenText8"
-                                text="{AppModel>date}"
+                                text="{expense>date}"
                             />
                             <Text
                                 id="_IDGenText9"
-                                text="{AppModel>description}"
+                                text="{expense>note}"
                             />
                             <Button id="_IDGenButton"
-                    text="{AppModel>amount}"
+                    text="{expense>amount}"
                     press=".onDelete" />
                         </cells>
                     </ColumnListItem>
@@ -144,33 +144,33 @@
                 height="500px"
             >
                 <viz:dataset>
-                    <viz.data:FlattenedDataset id="_IDGenFlattenedDataset" data="{AppModel>/chartData}">
+                    <viz.data:FlattenedDataset id="_IDGenFlattenedDataset" data="{expense>/Expenses}">
                         <viz.data:dimensions>
                             <viz.data:DimensionDefinition id="_IDGenDimensionDefinition"
                                 name="Date"
-                                value="{AppModel>date}"
+                                value="{expense>date}"
                             />
                         </viz.data:dimensions>
 
                         <viz.data:measures>
                             <viz.data:MeasureDefinition id="_IDGenMeasureDefinition1"
                                 name="Food"
-                                value="{AppModel>food}"
+                                value="{expense>food}"
                             />
 
                             <viz.data:MeasureDefinition id="_IDGenMeasureDefinition2"
                                 name="Travel"
-                                value="{AppModel>travel}"
+                                value="{expense>travel}"
                             />
 
                             <viz.data:MeasureDefinition id="_IDGenMeasureDefinition3"
                                 name="Accommodation"
-                                value="{AppModel>accommodation}"
+                                value="{expense>accommodation}"
                             />
 
                             <viz.data:MeasureDefinition id="_IDGenMeasureDefinition4"
                                 name="Entertainment"
-                                value="{AppModel>entertainment}"
+                                value="{expense>entertainment}"
                             />
                         </viz.data:measures>
                     </viz.data:FlattenedDataset>

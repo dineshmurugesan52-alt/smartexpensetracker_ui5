@@ -13,7 +13,7 @@
                     id="_IDGenButton1"
                     icon="sap-icon://menu2"
                     press="onToggleSideNav"
-                    type="Emphasized"
+                    type="Transparent"
                 />
                 <Title
                     id="_IDGenTitle1"
@@ -31,7 +31,7 @@
                 selectedKey="dashboard"
                 itemSelect="onNavItemSelect"
             >
-                <tnt:NavigationList id="_IDGenNavigationList">
+                <tnt:NavigationList id="_IDGenNavigationList" >
                     <tnt:NavigationListItem
                         id="_IDGenNavigationListItem1"
                         key="dashboard"

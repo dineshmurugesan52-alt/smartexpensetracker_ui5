@@ -7,35 +7,27 @@ sap.ui.define([
     "use strict";
 
     return Controller.extend("smartexpense.controller.View1", {
-        onInit() {
-            //this._generateDashboard();
-            // var aMonths = [];
-            // var oDate = new Date(2023, 0, 1); // Start from Jan 2023 (change as needed)
-            // var oToday = new Date(); // Current date
-            // console.log(oDate, oToday);
-            // while (
-            //     oDate.getFullYear() < oToday.getFullYear() ||
-            //     (oDate.getFullYear() === oToday.getFullYear() && oDate.getMonth() <= oToday.getMonth())
-            // ) {
-            //     var mm = String(oDate.getMonth() + 1).padStart(2, "0");
-            //     var yyyy = oDate.getFullYear();
+        onInit: function () {
 
-            //     aMonths.push({
-            //         key: mm + "/" + yyyy, // MM/yyyy
-            //         text: oDate.toLocaleString("default", { month: "long" }) + " " + yyyy
-            //     });
-            //     console.log(aMonths);
-            //     oDate.setMonth(oDate.getMonth() + 1);
-            // }
+            this.getOwnerComponent()
+                .getRouter()
+                .getRoute("dashboard")
+                .attachPatternMatched(
+                    this._onDashboardMatched,
+                    this
+                );
 
-            // var oMonthsModel = new JSONModel({ months: aMonths });
-            // console.log("oMonthsModel", oMonthsModel);
-            // this.getView().setModel(oMonthsModel, "monthsModel");
-            // //console.log(oMonthsModel/months/key(0));
-            // // Preselect current month
-            // var sCurrentKey = String(oToday.getMonth() + 1).padStart(2, "0") + "/" + oToday.getFullYear();
-            // console.log(oToday.getMonth(), sCurrentKey);
-            // this.byId("monthYearSelect").setSelectedKey(sCurrentKey);
+                console.log("Dashboard initialized.");
+        },
+
+        _onDashboardMatched: function () {
+
+            var oTable = this.byId("expenseTable");
+            var oBinding = oTable.getBinding("items");
+
+            if (oBinding) {
+                oBinding.refresh();
+            }
         },
         onDelete: function (oEvent) {
 
