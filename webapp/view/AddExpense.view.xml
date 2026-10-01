@@ -22,6 +22,7 @@
             <SegmentedButtonItem id="_IDGenSegmentedButtonItem2" key="Accommodation" text="Stay" icon="sap-icon://home" />
             <SegmentedButtonItem id="_IDGenSegmentedButtonItem3" key="Others" text="Others" icon="sap-icon://overflow" />
           </items>
+        
         </SegmentedButton>
 
         <Label id="_IDGenLabel7" text="Payment mode" />

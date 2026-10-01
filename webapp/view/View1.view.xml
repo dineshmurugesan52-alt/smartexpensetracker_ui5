@@ -71,7 +71,11 @@
         
  
     </Toolbar>  -->
-    
+    <ScrollContainer
+    id="tableScroll"
+    height="500px"
+    vertical="true"
+    horizontal="false">
             <Table
                 id="expenseTable"
                 items="{expense>/Expenses}"
@@ -138,13 +142,14 @@
                     </ColumnListItem>
                 </items>
             </Table>
+            </ScrollContainer >
             <viz:VizFrame
                 id="expenseChart"
                 vizType="stacked_column"
                 height="500px"
             >
                 <viz:dataset>
-                    <viz.data:FlattenedDataset id="_IDGenFlattenedDataset" data="{expense>/Expenses}">
+                    <viz.data:FlattenedDataset id="_IDGenFlattenedDataset" data="{expense>/ExpenseChart}">
                         <viz.data:dimensions>
                             <viz.data:DimensionDefinition id="_IDGenDimensionDefinition"
                                 name="Date"
@@ -169,8 +174,8 @@
                             />
 
                             <viz.data:MeasureDefinition id="_IDGenMeasureDefinition4"
-                                name="Entertainment"
-                                value="{expense>entertainment}"
+                                name="Others"
+                                value="{expense>others}"
                             />
                         </viz.data:measures>
                     </viz.data:FlattenedDataset>
@@ -180,7 +185,7 @@
                     <viz.feeds:FeedItem id="_IDGenFeedItem"
                         uid="valueAxis"
                         type="Measure"
-                        values="Food,Travel,Accommodation,Entertainment"
+                        values="Food,Travel,Accommodation,Others"
                     />
 
                     <viz.feeds:FeedItem id="_IDGenFeedItem1"

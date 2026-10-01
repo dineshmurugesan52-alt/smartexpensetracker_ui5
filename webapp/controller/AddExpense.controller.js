@@ -7,7 +7,7 @@ sap.ui.define([
 
     return Controller.extend("smartexpense.controller.AddExpense", {
         onInit: function () {
-            //this.getOwnerComponent().getRouter().getRoute("RouteView2").attachPatternMatched(this._onRouteMatched, this);
+            this.getOwnerComponent().getRouter().getRoute("AddExpense").attachPatternMatched(this._onRouteMatched, this);
             var oDatePicker = this.byId("dateInput");
 
             oDatePicker.setMaxDate(new Date());
@@ -15,6 +15,11 @@ sap.ui.define([
         _onRouteMatched: function (oEvent) {
             //var sId=oEvent.getParameter("arguments").id;
             console.log("Matched route for ID:", oEvent);
+            this.byId("addExpenseAmountInput").setValue("");
+            this.byId("dateInput").setValue("");
+            this.byId("categorySegmentedButton").setSelectedKey("");
+            this.byId("paymentSelect").setSelectedKey("");
+            this.byId("noteInput").setValue("");
         },
         onNavBack: function () {
             this.getOwnerComponent().getRouter().navTo("dashboard");

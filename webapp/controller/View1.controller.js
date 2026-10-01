@@ -28,7 +28,26 @@ sap.ui.define([
             if (oBinding) {
                 oBinding.refresh();
             }
+            var oChart=this.byId("_IDGenFlattenedDataset");
+            var oChartBinding=oChart.getBinding("data");
+            if (oChartBinding) {
+                console.log("Refreshing chart data binding.");
+                oChartBinding.refresh();
+            }
         },
+        // onBeforeRendering: function () {
+        //     var oTable = this.byId("expenseTable");
+        //     var oBinding = oTable.getBinding("items");
+
+        //     if (oBinding) {
+        //         oBinding.refresh();
+        //     }
+        //     var oChart=this.byId("_IDGenFlattenedDataset");
+        //     var oChartBinding=oChart.getBinding("data");
+        //     if (oChartBinding) {
+        //         oChartBinding.refresh();
+        //     }
+        // },
         onDelete: function (oEvent) {
 
             var oButton = oEvent.getSource();
@@ -95,6 +114,7 @@ sap.ui.define([
         //     // });
         // },
         onAddExpense: function () {
+            
             this.getOwnerComponent().getRouter().navTo("AddExpense");
         },
         onExpensePress: function (oEvent) {
@@ -219,39 +239,39 @@ sap.ui.define([
         //     );
 
         // },
-        onSaveExpense: function () {
+        // onSaveExpense: function () {
 
-            var oModel = this.getView().getModel("AppModel");
+        //     var oModel = this.getView().getModel("AppModel");
 
 
-            // Read current expense entered in the dialog
-            var oExpense = oModel.getProperty("/newExpense");
+        //     // Read current expense entered in the dialog
+        //     var oExpense = oModel.getProperty("/newExpense");
 
-            // Read existing expenses
-            var aExpenses = oModel.getProperty("/expenses");
-            // console.log(oModel.getProperty("/expenses"));
-            oExpense.amount = Number(oExpense.amount);
+        //     // Read existing expenses
+        //     var aExpenses = oModel.getProperty("/expenses");
+        //     // console.log(oModel.getProperty("/expenses"));
+        //     oExpense.amount = Number(oExpense.amount);
 
-            // Add a copy of the new expense
-            aExpenses.push({ ...oExpense });
+        //     // Add a copy of the new expense
+        //     aExpenses.push({ ...oExpense });
 
-            // Update the model
-            oModel.setProperty("/expenses", aExpenses);
+        //     // Update the model
+        //     oModel.setProperty("/expenses", aExpenses);
 
-            // Clear the form
-            oModel.setProperty("/newExpense", {
-                category: "",
-                amount: "",
-                date: "",
-                description: ""
-            });
+        //     // Clear the form
+        //     oModel.setProperty("/newExpense", {
+        //         category: "",
+        //         amount: "",
+        //         date: "",
+        //         description: ""
+        //     });
 
-            //console.log(oModel.getProperty("/newExpenses"));
-            console.log(oModel.getProperty("/expenses"));
-            // Close the dialog
-            this._generateDashboard();
-            this._oDialog.close();
-        },
+        //     //console.log(oModel.getProperty("/newExpenses"));
+        //     console.log(oModel.getProperty("/expenses"));
+        //     // Close the dialog
+        //     this._generateDashboard();
+        //     this._oDialog.close();
+        // },
 
         onCloseDialog: function () {
             var oSelect = sap.ui.core.Fragment.byId(

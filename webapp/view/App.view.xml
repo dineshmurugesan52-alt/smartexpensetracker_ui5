@@ -22,7 +22,7 @@
                     class="sapUiMediumMarginBegin"
                 />
                 <ToolbarSpacer id="_IDGenToolbarSpacer" ></ToolbarSpacer>
-                <Avatar id="_IDGenAvatar" initials="SA" displaySize="XS" />
+                <Avatar id="_IDGenAvatar" displaySize="XS" />
             </tnt:ToolHeader>
         </tnt:header>
         <tnt:sideContent>
