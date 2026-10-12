@@ -28,7 +28,7 @@ sap.ui.define([
                         "smartexpense/model/AppModel.json"
                     )
                 );
-
+            //this.setModel(oModel, "expense");
             this.setModel(oModel, "AppModel");
             console.log("Component Model" + oModel);
         }

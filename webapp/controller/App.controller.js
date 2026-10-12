@@ -6,11 +6,15 @@ sap.ui.define([
   return BaseController.extend("smartexpense.controller.App", {
     onInit() {
     },
-    onToggleSideNav() {
-      console.log("Toggle Side Nav");
-      var oToolpage = this.byId("sideNavigation");
-      oToolpage.setExpanded(!oToolpage.getExpanded());
-    },
+    onToggleSideNav: function () {
+    console.log("Toggle Side Nav");
+
+    var oToolPage = this.byId("toolPage");
+
+    oToolPage.setSideExpanded(
+        !oToolPage.getSideExpanded()
+    );
+},
     onNavItemSelect: function (oEvent) {
       console.log("Navigation Item Selected",oEvent);
       var sKey = oEvent.getParameter("item").getKey();

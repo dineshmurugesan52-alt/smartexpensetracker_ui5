@@ -3,6 +3,7 @@
     displayBlock="true"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns:tnt="sap.tnt"
+    height="100%"
     xmlns="sap.m"
 >
     <!-- <App id="app"></App> -->
@@ -59,7 +60,7 @@
                 </tnt:NavigationList>
             </tnt:SideNavigation>
         </tnt:sideContent>
-        <tnt:mainContents>
+        <tnt:mainContents >
             <NavContainer id="app" />
         </tnt:mainContents>
     </tnt:ToolPage>
