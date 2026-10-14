@@ -3,15 +3,17 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns:core="sap.ui.core"
     xmlns="sap.m"
+    xmlns:f="sap.f"
     xmlns:viz="sap.viz.ui5.controls"
     xmlns:viz.data="sap.viz.ui5.data"
-    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" 
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
 >
     <Page
         id="page"
         title=""
+        showHeader="true"
     >
-    <customHeader>
+        <!-- <customHeader>
     <Toolbar id="_IDGenToolbar1">
 
         <Button
@@ -36,11 +38,33 @@
             press=".onAddExpenses" />
 
     </Toolbar>
-</customHeader>
+</customHeader> -->
+
+        <headerContent>
+            <Button
+                id="_IDGenButton6"
+                icon="sap-icon://navigation-left-arrow"
+                press="onPrevMonth"
+            />
+            
+            <DatePicker width="10rem" id="_IDGenDatePicker" valueFormat="yyyy-MM" displayFormat="MMMM yyyy" change=".onMonthYearChange" placeholder="Select month"></DatePicker>
+            <Button
+                id="_IDGenButton7"
+                icon="sap-icon://navigation-right-arrow"
+                press="onNextMonth"
+            />
+            <Button
+                id="_IDGenButton8"
+                text="Add expense"
+                icon="sap-icon://add"
+                type="Emphasized"
+                press="onAddExpense"
+                class="sapUiSmallMarginBegin"
+            />
+        </headerContent>
 
         <content>
-
-    <Toolbar id="_IDGenToolbar2"> 
+            <!-- <Toolbar id="_IDGenToolbar2"> 
         <Title id="_IDGenTitle" 
             text="Daily Expense Overview" 
             level="H2" /> 
@@ -62,120 +86,235 @@
         
         
  
-    </Toolbar> 
-    
-            <Table
-                id="expenseTable"
-                items="{AppModel>/expenses}"
+    </Toolbar>  -->
+            
+            <GenericTile
+                id="_IDGenGenericTile"
+                header="Total expense"
+                subheader="This month"
+                class="sapUiTinyMarginBegin sapUiTinyMarginTop tilelayout"
             >
-                <columns>
-                    <Column id="_IDGenColumn">
-                        <Text
-                            id="_IDGenText2"
-                            text="Category"
-                        />
-                    </Column>
+                <TileContent
+                    id="_IDGenTileContent"
+                    unit="₹"
+                    footer=""
+                >
+                    <NumericContent
+                        id="_IDGenNumericContent"
+                        value="{view>/monthly/totalExpense}"
+                        withMargin="false"
+                        valueColor="Good"
+                    />
+                </TileContent>
+            </GenericTile>
+            <GenericTile
+                id="_IDGenGenericTile1"
+                header="Total Food expense"
+                subheader="This month"
+                class="sapUiTinyMarginBegin sapUiTinyMarginTop tilelayout"
+            >
+                <TileContent
+                    id="_IDGenTileContent2"
+                    unit="₹"
+                    footer=""
+                >
+                    <NumericContent
+                        id="_IDGenNumericContent1"
+                        value="{view>/monthly/food}"
+                        withMargin="false"
+                    />
+                </TileContent>
+            </GenericTile>
+            <GenericTile
+                id="_IDGenGenericTile2"
+                header="Total Travel expense"
+                subheader="This month"
+                class="sapUiTinyMarginBegin sapUiTinyMarginTop tilelayout"
+            >
+                <TileContent
+                    id="_IDGenTileContent3"
+                    unit="₹"
+                    footer=""
+                >
+                    <NumericContent
+                        id="_IDGenNumericContent2"
+                        value="{view>/monthly/travel}"
+                        withMargin="false"
+                    />
+                </TileContent>
+            </GenericTile>
+            <GenericTile
+                id="_IDGenGenericTile3"
+                header="Total Accommodation expense"
+                subheader="This month"
+                class="sapUiTinyMarginBegin sapUiTinyMarginTop tilelayout"
+            >
+                <TileContent
+                    id="_IDGenTileContent4"
+                    unit="₹"
+                    footer=""
+                >
+                    <NumericContent
+                        id="_IDGenNumericContent3"
+                        value="{view>/monthly/accommodation}"
+                        withMargin="false"
+                    />
+                </TileContent>
+            </GenericTile>
+            <GenericTile
+                id="_IDGenGenericTile4"
+                header="Total Others expense"
+                subheader="This month"
+                class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiSizeCompact sapUiResponsiveContentPadding sapUiTinyMarginBottom tilelayout"
+            >
+                <TileContent
+                    id="_IDGenTileContent5"
+                    unit="₹"
+                    footer=""
+                >
+                    <NumericContent
+                        id="_IDGenNumericContent4"
+                        value="{view>/monthly/others}"
+                        withMargin="false"
+                    />
+                </TileContent>
+            </GenericTile>
 
-                    <Column id="_IDGenColumn1">
-                        <Text
-                            id="_IDGenText3"
-                            text="Amount"
-                        />
-                    </Column>
+            <ScrollContainer
+                id="tableScroll"
+                height="500px"
+                vertical="true"
+                horizontal="false"
+            >
+                <Table
+                    id="expenseTable"
+                    items="{path: 'expense>/Expenses', parameters: { $$operationMode: 'Server' }}"
+                >
+                    <columns>
+                        <Column id="_IDGenColumn">
+                            <Text
+                                id="_IDGenText2"
+                                text="Category"
+                            />
+                        </Column>
 
-                    <Column id="_IDGenColumn2">
-                        <Text
-                            id="_IDGenText4"
-                            text="Date"
-                        />
-                    </Column>
+                        <Column id="_IDGenColumn1">
+                            <Text
+                                id="_IDGenText3"
+                                text="Amount"
+                            />
+                        </Column>
 
-                    <Column id="_IDGenColumn3">
-                        <Text
-                            id="_IDGenText5"
-                            text="Description"
-                        />
-                    </Column>
-                    <Column id="_IDGenColumn4" >
-                        <Text
-                            id="_IDGenText11"
-                            text="Actions"
-                        />
-                    </Column>
-                </columns>
+                        <Column id="_IDGenColumn2">
+                            <Text
+                                id="_IDGenText4"
+                                text="Date"
+                            />
+                        </Column>
 
-                <items>
-                    <ColumnListItem id="_IDGenColumnListItem" press=".onExpensePress" type="Active">
-                        <cells>
+                        <Column id="_IDGenColumn3">
                             <Text
-                                id="_IDGenText6"
-                                text="{AppModel>category}"
+                                id="_IDGenText5"
+                                text="Description"
                             />
+                        </Column>
+                        <Column id="_IDGenColumn4">
                             <Text
-                                id="_IDGenText7"
-                                text="{AppModel>amount}"
+                                id="_IDGenText11"
+                                text="Actions"
                             />
-                            <Text
-                                id="_IDGenText8"
-                                text="{AppModel>date}"
-                            />
-                            <Text
-                                id="_IDGenText9"
-                                text="{AppModel>description}"
-                            />
-                            <Button id="_IDGenButton"
-                    text="{AppModel>amount}"
-                    press=".onDelete" />
-                        </cells>
-                    </ColumnListItem>
-                </items>
-            </Table>
+                        </Column>
+                    </columns>
+
+                    <items>
+                        <ColumnListItem
+                            id="_IDGenColumnListItem"
+                            press=".onExpensePress"
+                            type="Active"
+                        >
+                            <cells>
+                                <Text
+                                    id="_IDGenText6"
+                                    text="{expense>category}"
+                                />
+                                <Text
+                                    id="_IDGenText7"
+                                    text="{expense>amount}"
+                                />
+                                <Text
+                                    id="_IDGenText8"
+                                    text="{expense>date}"
+                                />
+                                <Text
+                                    id="_IDGenText9"
+                                    text="{expense>note}"
+                                />
+                                <Button
+                                    id="_IDGenButton"
+                                    icon="sap-icon://delete"
+                                    press=".onDelete"
+                                />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </ScrollContainer>
             <viz:VizFrame
                 id="expenseChart"
                 vizType="stacked_column"
                 height="500px"
             >
                 <viz:dataset>
-                    <viz.data:FlattenedDataset id="_IDGenFlattenedDataset" data="{AppModel>/chartData}">
+                    <viz.data:FlattenedDataset
+                        id="_IDGenFlattenedDataset"
+                        data="{expense>/ExpenseChart}"
+                    >
                         <viz.data:dimensions>
-                            <viz.data:DimensionDefinition id="_IDGenDimensionDefinition"
+                            <viz.data:DimensionDefinition
+                                id="_IDGenDimensionDefinition"
                                 name="Date"
-                                value="{AppModel>date}"
+                                value="{expense>date}"
                             />
                         </viz.data:dimensions>
 
                         <viz.data:measures>
-                            <viz.data:MeasureDefinition id="_IDGenMeasureDefinition1"
+                            <viz.data:MeasureDefinition
+                                id="_IDGenMeasureDefinition1"
                                 name="Food"
-                                value="{AppModel>food}"
+                                value="{expense>food}"
                             />
 
-                            <viz.data:MeasureDefinition id="_IDGenMeasureDefinition2"
+                            <viz.data:MeasureDefinition
+                                id="_IDGenMeasureDefinition2"
                                 name="Travel"
-                                value="{AppModel>travel}"
+                                value="{expense>travel}"
                             />
 
-                            <viz.data:MeasureDefinition id="_IDGenMeasureDefinition3"
+                            <viz.data:MeasureDefinition
+                                id="_IDGenMeasureDefinition3"
                                 name="Accommodation"
-                                value="{AppModel>accommodation}"
+                                value="{expense>accommodation}"
                             />
 
-                            <viz.data:MeasureDefinition id="_IDGenMeasureDefinition4"
-                                name="Entertainment"
-                                value="{AppModel>entertainment}"
+                            <viz.data:MeasureDefinition
+                                id="_IDGenMeasureDefinition4"
+                                name="Others"
+                                value="{expense>others}"
                             />
                         </viz.data:measures>
                     </viz.data:FlattenedDataset>
                 </viz:dataset>
 
                 <viz:feeds>
-                    <viz.feeds:FeedItem id="_IDGenFeedItem"
+                    <viz.feeds:FeedItem
+                        id="_IDGenFeedItem"
                         uid="valueAxis"
                         type="Measure"
-                        values="Food,Travel,Accommodation,Entertainment"
+                        values="Food,Travel,Accommodation,Others"
                     />
 
-                    <viz.feeds:FeedItem id="_IDGenFeedItem1"
+                    <viz.feeds:FeedItem
+                        id="_IDGenFeedItem1"
                         uid="categoryAxis"
                         type="Dimension"
                         values="Date"
